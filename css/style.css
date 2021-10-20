@@ -29,9 +29,23 @@ main {
     background-color: #6494EC;
 }
 
+.boom {
+    background-color: red;
+    color: black;
+}
+
+.boom::after {
+    content: '\01F4A3';
+}
+
 .box-selected:hover {
     color: white;
     background-color:#4580f0!important;
+}
+
+.boom:hover {
+    color: black;
+    background-color:rgb(185, 8, 8)!important;
 }
 
 .my-nav-color {

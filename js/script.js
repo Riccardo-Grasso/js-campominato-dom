@@ -4,7 +4,7 @@ const btnPlay = document.getElementById("button-play");
 const containerGriglia = document.getElementById("container-griglia");
 const hiddenContainer = document.getElementById("hidden-container");
 const numeroBombe = 16;
-
+let bombe = [];
 
 //Cosa succede quando clicco sul pulsante?
 btnPlay.addEventListener("click", function () {
@@ -22,9 +22,10 @@ btnPlay.addEventListener("click", function () {
 
     //tramite funzione, creo le celle in relazione al loro numero
     funzioneGeneraGriglia(celleTotali);
-    functionGeneraBombe(numeroBombe, celleTotali);
+    bombe = functionGeneraBombe(numeroBombe, celleTotali);
 
     console.log(`Numero bombe: ${numeroBombe}`);
+
 
 });
 
@@ -70,6 +71,9 @@ function funzioneGeneraGriglia(celleTotali) {
         cella.style.width = dimCella + "%";
         cella.style.height = dimCella + "%";
         cella.textContent = (i + 1);
+        /* cella.innerHTML = "<div>`${i + 1}`</div>"; */
+        /* const cellaN = cella.createElement("div");
+        cellaN.innerHTML = `${i + 1}`;  */
 
         //uso una nuova funzione per marcare i box che clicco
         cella.addEventListener("click", functionCellaSelezionata);
@@ -79,5 +83,13 @@ function funzioneGeneraGriglia(celleTotali) {
 }
 
 function functionCellaSelezionata() {
-    this.classList.add("box-selected");
+    const numeroCella = parseInt(this.textContent);
+    if (bombe.includes(numeroCella)) {
+        this.classList.add("boom");
+        alert("Partita Finita. HAI PERSO!");
+        containerGriglia.innerHTML = "";
+        hiddenContainer.classList.add("d-none-container");
+    } else {
+        this.classList.add("box-selected");
+    }
 }
