@@ -23,7 +23,9 @@ btnPlay.addEventListener("click", function () {
     //tramite funzione, creo le celle in relazione al loro numero
     funzioneGeneraGriglia(celleTotali);
     functionGeneraBombe(numeroBombe, celleTotali);
-    console.log(celleBombe);
+
+    console.log(`Numero bombe: ${numeroBombe}`);
+
 });
 
 
