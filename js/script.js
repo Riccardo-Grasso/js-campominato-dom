@@ -5,6 +5,7 @@ const containerGriglia = document.getElementById("container-griglia");
 const hiddenContainer = document.getElementById("hidden-container");
 const numeroBombe = 16;
 let bombe = [];
+let clickCounter = 0;
 
 //Cosa succede quando clicco sul pulsante?
 btnPlay.addEventListener("click", function () {
@@ -83,12 +84,15 @@ function funzioneGeneraGriglia(celleTotali) {
 }
 
 function functionCellaSelezionata() {
+    clickCounter++;
     const numeroCella = parseInt(this.textContent);
+
     if (bombe.includes(numeroCella)) {
+
         this.classList.add("boom");
-        alert("Partita Finita. HAI PERSO!");
-        containerGriglia.innerHTML = "";
-        hiddenContainer.classList.add("d-none-container");
+        swal("La bomba è esplosa", `Punteggio: ${clickCounter - 1}`, "error");
+        /*         containerGriglia.innerHTML = "";
+                hiddenContainer.classList.add("d-none-container"); */
     } else {
         this.classList.add("box-selected");
     }
