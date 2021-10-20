@@ -90,9 +90,10 @@ function functionCellaSelezionata() {
     if (bombe.includes(numeroCella)) {
 
         this.classList.add("boom");
-        swal("La bomba è esplosa", `Punteggio: ${clickCounter - 1}`, "error");
+        swal("Hai Perso!", `Punteggio: ${clickCounter - 1}`, "error");
         /*         containerGriglia.innerHTML = "";
                 hiddenContainer.classList.add("d-none-container"); */
+
     } else {
         this.classList.add("box-selected");
     }
