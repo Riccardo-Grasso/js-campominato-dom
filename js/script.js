@@ -6,6 +6,8 @@ const hiddenContainer = document.getElementById("hidden-container");
 const numeroBombe = 16;
 let bombe = [];
 let clickCounter = 0;
+let endGame = false;
+
 
 //Cosa succede quando clicco sul pulsante?
 btnPlay.addEventListener("click", function () {
@@ -18,6 +20,7 @@ btnPlay.addEventListener("click", function () {
     //calcolo il numero di celel totali con una funzione, in base alla difficoltà selezionata
     const celleTotali = functionNumeroCelle(difficolta);
 
+    console.clear();
     console.log(`L'utente ha impostato la difficoltà: ${difficolta}`);
     console.log(`Numero celle per la partita: ${celleTotali}`);
 
@@ -25,9 +28,9 @@ btnPlay.addEventListener("click", function () {
     funzioneGeneraGriglia(celleTotali);
     bombe = functionGeneraBombe(numeroBombe, celleTotali);
     console.log(`Numero bombe: ${numeroBombe}`);
+    clickCounter = 0;
 
-
-
+    vittoria(celleTotali, numeroBombe, clickCounter);
 });
 
 
@@ -84,21 +87,25 @@ function funzioneGeneraGriglia(celleTotali) {
 }
 
 function functionCellaSelezionata() {
-    clickCounter++;
+
     const numeroCella = parseInt(this.textContent);
 
-    if (bombe.includes(numeroCella)) {
+    if (this.classList.contains("boom") || this.classList.contains("box-selected") || endGame) {
+        return;
+    }
 
+    if (bombe.includes(numeroCella)) {
         this.classList.add("boom");
         this.innerHTML = `<img src="img/bomb-clipart.png" class="w-75" alt="bomb-clipart">`;
         showAllBombs();
-        swal("Hai Perso!", `Punteggio: ${clickCounter - 1}`, "error");
-        /*         containerGriglia.innerHTML = "";
-                hiddenContainer.classList.add("d-none-container"); */
-
+        swal("Hai Perso!", `Punteggio: ${clickCounter}`, "error");
+        endGame = true;
     } else {
         this.classList.add("box-selected");
+        clickCounter++;
+        console.log(clickCounter);
     }
+
 }
 
 
@@ -112,5 +119,14 @@ function showAllBombs() {
 
         bombCell.classList.add("boom");
         bombCell.innerHTML = `<img src="img/bomb-clipart.png" class="w-75" alt="bomb-clipart">`;
+    }
+}
+
+function vittoria(nomCelle, bomb, punteggio) {
+    const celleValide = nomCelle - bomb;
+    console.log(celleValide);
+    if (punteggio === celleValide) {
+        swal("Hai Vinto!", `Punteggio: ${clickCounter}`, "success");
+        endGame = true;
     }
 }
