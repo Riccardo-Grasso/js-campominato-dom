@@ -72,7 +72,7 @@ function funzioneGeneraGriglia(celleTotali) {
         cella.style.width = dimCella + "%";
         cella.style.height = dimCella + "%";
         cella.textContent = (i + 1);
-        /* cella.innerHTML = "<div>`${i + 1}`</div>"; */
+        /* cella.innerHTML += `<img src="img/bomb-clipart.png" class="w-100 bomba-icon" alt="bomb-clipart">`; */
         /* const cellaN = cella.createElement("div");
         cellaN.innerHTML = `${i + 1}`;  */
 
@@ -90,6 +90,7 @@ function functionCellaSelezionata() {
     if (bombe.includes(numeroCella)) {
 
         this.classList.add("boom");
+        this.innerHTML = `<img src="img/bomb-clipart.png" class="w-75" alt="bomb-clipart">`;
         showAllBombs();
         swal("Hai Perso!", `Punteggio: ${clickCounter - 1}`, "error");
         /*         containerGriglia.innerHTML = "";
@@ -110,9 +111,6 @@ function showAllBombs() {
         const bombCell = cellList[bomb - 1];
 
         bombCell.classList.add("boom");
+        bombCell.innerHTML = `<img src="img/bomb-clipart.png" class="w-75" alt="bomb-clipart">`;
     }
-
-    //ciclo su array bombe
-
-    //ad ogni ciclo recupero la cella corrispondente all'indice della bomba
 }

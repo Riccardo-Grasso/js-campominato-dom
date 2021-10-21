@@ -34,9 +34,9 @@ main {
     color: black;
 }
 
-.boom::after {
+/* .boom::after {
     content: '\01F4A3';
-}
+} */
 
 .box-selected:hover {
     color: white;
