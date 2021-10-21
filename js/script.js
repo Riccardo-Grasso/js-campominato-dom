@@ -8,7 +8,6 @@ let bombe = [];
 let clickCounter = 0;
 let endGame = false;
 
-
 //Cosa succede quando clicco sul pulsante?
 btnPlay.addEventListener("click", function () {
 
@@ -32,8 +31,6 @@ btnPlay.addEventListener("click", function () {
 
     vittoria(celleTotali, numeroBombe, clickCounter);
 });
-
-
 
 //creo funzione che mi dia il numero di celle in base alla difficoltà selezionata
 function functionNumeroCelle(difficolta) {
@@ -122,10 +119,10 @@ function showAllBombs() {
     }
 }
 
-function vittoria(nomCelle, bomb, punteggio) {
-    const celleValide = nomCelle - bomb;
-    console.log(celleValide);
-    if (punteggio === celleValide) {
+function vittoria(celleTotali, numeroBombe, clickCounter) {
+    const celleValide = celleTotali - numeroBombe;
+    console.log(`Celle senza bomba: ${celleValide}`);
+    if (clickCounter === celleValide) {
         swal("Hai Vinto!", `Punteggio: ${clickCounter}`, "success");
         endGame = true;
     }
