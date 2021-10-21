@@ -24,8 +24,8 @@ btnPlay.addEventListener("click", function () {
     //tramite funzione, creo le celle in relazione al loro numero
     funzioneGeneraGriglia(celleTotali);
     bombe = functionGeneraBombe(numeroBombe, celleTotali);
-
     console.log(`Numero bombe: ${numeroBombe}`);
+
 
 
 });
@@ -90,6 +90,7 @@ function functionCellaSelezionata() {
     if (bombe.includes(numeroCella)) {
 
         this.classList.add("boom");
+        showAllBombs();
         swal("Hai Perso!", `Punteggio: ${clickCounter - 1}`, "error");
         /*         containerGriglia.innerHTML = "";
                 hiddenContainer.classList.add("d-none-container"); */
@@ -97,4 +98,21 @@ function functionCellaSelezionata() {
     } else {
         this.classList.add("box-selected");
     }
+}
+
+
+function showAllBombs() {
+    //recupero elenco di tutte le celle esistenti
+    const cellList = containerGriglia.querySelectorAll(".box");
+    console.log(cellList);
+    for (let i = 0; i < bombe.length; i++) {
+        const bomb = bombe[i];
+        const bombCell = cellList[bomb - 1];
+
+        bombCell.classList.add("boom");
+    }
+
+    //ciclo su array bombe
+
+    //ad ogni ciclo recupero la cella corrispondente all'indice della bomba
 }
